@@ -94,7 +94,7 @@ item *do_item_alloc(char *key, const size_t nkey, const int flags, const rel_tim
 
     if (*key == 'J' && key[1] == 'C' && key[2] == '_') {
         char *i = key+3;
-        while (i && i < '0'  && i > '9') 
+        while (*i && *i < '0' && *i > '9') 
             i++;
         if (!*i) 
             fprintf("JC CACHE INVALIDATION: %d\t%s",
