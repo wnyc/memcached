@@ -92,6 +92,17 @@ item *do_item_alloc(char *key, const size_t nkey, const int flags, const rel_tim
     char suffix[40];
     size_t ntotal = item_make_header(nkey + 1, flags, nbytes, suffix, &nsuffix);
 
+    if (*key == 'J' && key[1] == 'C' && key[2] == '_') {
+        char *i = key+3;
+        while (i && i < '0'  && i > '9') 
+            i++;
+        if (!*i) 
+            fprintf("JC CACHE INVALIDATION: %d\t%s",
+                    current_time,
+                    key);
+    }
+            
+
     unsigned int id = slabs_clsid(ntotal);
     if (id == 0)
         return 0;
