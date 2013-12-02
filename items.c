@@ -97,7 +97,7 @@ item *do_item_alloc(char *key, const size_t nkey, const int flags, const rel_tim
         while (*i && *i < '0' && *i > '9') 
             i++;
         if (!*i) 
-            fprintf("JC CACHE INVALIDATION: %d\t%s",
+            fprintf("JC CACHE INVALIDATION: %d\t%s\n",
                     current_time,
                     key);
     }
@@ -138,7 +138,7 @@ item *do_item_alloc(char *key, const size_t nkey, const int flags, const rel_tim
                 if (search->exptime == 0 || search->exptime > current_time) {
                     itemstats[id].evicted++;
                     itemstats[id].evicted_time = current_time - search->time;
-                    fprintf(stderr, "UNEXPIRED EVICTION: %d\t%d\t%s",
+                    fprintf(stderr, "UNEXPIRED EVICTION: %d\t%d\t%s\n",
                             search->exptime,
                             current_time,
                             ITEM_key(search));
